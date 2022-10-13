@@ -34,9 +34,9 @@ def word_error_rate(text, error):
     return error/len(text.split())
 
 
-s1 = input('Enter Reference Sentence: ')
-s2 = input('Enter Hypothesis Sentence: ')
-ld = lev_dis(s1, s2)
-wer = word_error_rate(s1, ld) * 100
-print(f"The Levenshtein Distance (number of errors): {ld}")
-print(f"The Word Error Rate(WER): {round(wer, 2)}%")
+# s1 = input('Enter Reference Sentence: ')
+# s2 = input('Enter Hypothesis Sentence: ')
+# ld = lev_dis(s1, s2)
+# wer = word_error_rate(s1, ld) * 100
+# print(f"The Levenshtein Distance (number of errors): {ld}")
+# print(f"The Word Error Rate(WER): {round(wer, 2)}%")
