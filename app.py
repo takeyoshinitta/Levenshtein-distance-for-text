@@ -13,8 +13,9 @@ def text_post ():
     text2 = request.form['s2']
     distance = lev_dis(text1, text2)
     wer = word_error_rate(text1, distance) * 100
+    values = {"val1": distance, "val2" :wer}
 
-    return f"The Distance is  {str(distance)} The WER is {str(wer)}%"
+    return render_template('result.html', values=values)
  
 if __name__ == '__main__':
     app.run()
