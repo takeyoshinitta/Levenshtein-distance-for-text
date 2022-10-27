@@ -15,7 +15,7 @@ def text_post ():
     wer = word_error_rate(text1, distance) * 100
     values = {"val1": distance, "val2" :wer}
 
-    return render_template('result.html', values=values)
+    return render_template('result1.html', values=values)
  
 if __name__ == '__main__':
     app.run()
