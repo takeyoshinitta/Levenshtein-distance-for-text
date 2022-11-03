@@ -9,6 +9,12 @@ def lev_dis(s1, s2):
     global sub_count, del_count, ins_count
     global arrow_matrix
 
+    # initialize 
+    sub_count = 0
+    del_count = 0
+    ins_count = 0
+    arrow_matrix = [[] for i in range(s1_len + 1)]
+
     if s1 == s2:
         return 0
     s1_arr = s1.split()
@@ -21,12 +27,6 @@ def lev_dis(s1, s2):
         return s1_len
     # create a s1_len x s2_len matrix that stores each score
     matrix = [[] for i in range(s1_len + 1)]
-
-    # initialize 
-    sub_count = 0
-    del_count = 0
-    ins_count = 0
-    arrow_matrix = [[] for i in range(s1_len + 1)]
 
     for i in range(s1_len + 1):
         matrix[i] = [0 for j in range(s2_len + 1)]
@@ -61,7 +61,6 @@ def lev_dis(s1, s2):
     return matrix[s1_len][s2_len]
 
 def count_error(i, j):
-    logging.info("Pass here")
     global sub_count, del_count, ins_count
     if i == 0 and j ==0:
         return 'Done'
