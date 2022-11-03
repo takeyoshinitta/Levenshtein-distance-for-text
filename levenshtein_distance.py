@@ -14,16 +14,11 @@ def lev_dis(s1, s2):
     del_count = 0
     ins_count = 0
 
-    if s1 == s2:
-        return 0
     s1_arr = s1.split()
     s2_arr = s2.split()
     s1_len = len(s1_arr)
     s2_len = len(s2_arr)
-    if s1_len == 0:
-        return s2_len
-    if s2_len == 0:
-        return s1_len
+
     # create a s1_len x s2_len matrix that stores each score
     matrix = [[] for i in range(s1_len + 1)]
     arrow_matrix = [[] for i in range(s1_len + 1)]
@@ -36,6 +31,13 @@ def lev_dis(s1, s2):
         matrix[i][0] = i
     for j in range(s2_len + 1):
         matrix[0][j] = j
+
+    if s1 == s2:
+        return 0
+    if s1_len == 0:
+        return s2_len
+    if s2_len == 0:
+        return s1_len
 
     for i in range(1, s1_len + 1):
         s1_word = s1_arr[i-1]
@@ -53,10 +55,10 @@ def lev_dis(s1, s2):
 
             matrix[i][j] = min([matrix[i-1][j] + 1, matrix[i][j-1] + 1, matrix[i-1][j-1] + cost])
 
-    # for i in range(s1_len + 1):
-    #     print(arrow_matrix[i])
-    # for i in range(s1_len + 1):
-    #     print(matrix[i])
+    for i in range(s1_len + 1):
+        print(arrow_matrix[i])
+    for i in range(s1_len + 1):
+        print(matrix[i])
     
     return matrix[s1_len][s2_len]
 
@@ -94,17 +96,17 @@ def word_error_rate(text, error):
         return -1
 
 # ------------------------ Test in the terminal ------------------------
-# s1 = input('Enter Reference Sentence: ')
-# s2 = input('Enter Hypothesis Sentence: ')
-# s1_arr = s1.split()
-# s2_arr = s2.split()
-# s1_len = len(s1_arr)
-# s2_len = len(s2_arr)
-# ld = lev_dis(s1, s2)
-# wer = word_error_rate(s1, ld) * 100
+s1 = input('Enter Reference Sentence: ')
+s2 = input('Enter Hypothesis Sentence: ')
+s1_arr = s1.split()
+s2_arr = s2.split()
+s1_len = len(s1_arr)
+s2_len = len(s2_arr)
+ld = lev_dis(s1, s2)
+wer = word_error_rate(s1, ld) * 100
 
-# print(f"The Levenshtein Distance (number of errors): {ld}")
-# print(f"The Word Error Rate(WER): {round(wer, 2)}%")
+print(f"The Levenshtein Distance (number of errors): {ld}")
+print(f"The Word Error Rate(WER): {round(wer, 2)}%")
 
-# count_error(s1_len, s2_len)
-# print(f"Sub: {sub_count}. Del: {del_count}. Ins: {ins_count}")
+count_error(s1_len, s2_len)
+print(f"Sub: {sub_count}. Del: {del_count}. Ins: {ins_count}")
