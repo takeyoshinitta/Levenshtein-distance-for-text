@@ -14,6 +14,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
     </head>
     
     <body>
@@ -31,6 +36,7 @@
             <form method="POST">
                 <textarea name="s1" cols="50" rows="10" placeholder="Type Reference Text"></textarea>
                 <textarea name="s2" cols="50" rows="10" placeholder="Type Hypothesis Text"></textarea>
+                </br>
                 <input type="submit">
             </form>
         </div>

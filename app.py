@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from levenshtein_distance import lev_dis, word_error_rate
+import levenshtein_distance as ld
 
 app = Flask(__name__)
  
@@ -9,13 +9,26 @@ def hello_world():
 
 @app.route('/', methods=['POST'])
 def text_post ():
-    text1 = request.form['s1']
-    text2 = request.form['s2']
-    distance = lev_dis(text1, text2)
-    wer = word_error_rate(text1, distance) * 100
-    values = {"val1": distance, "val2" :wer}
+    ref = request.form['s1']
+    hyp = request.form['s2']
+    distance = ld.lev_dis(ref, hyp)
+    ref_arr = ref.split()
+    hyp_arr = hyp.split()
+    ref_len = len(ref_arr)
+    hyp_len = len(hyp_arr)
+    ld.count_error(ref_len, hyp_len)
+    wer = ld.word_error_rate(ref, distance) * 100
 
-    return render_template('result1.html', values=values)
+    values = {"ref": ref, 
+            "hyp": hyp,
+            "sub": ld.sub_count, 
+            "del": ld.del_count, 
+            "ins": ld.ins_count, 
+            "total": distance, 
+            "wer" :round(wer, 2)
+        }
+
+    return render_template('result.html', values=values)
  
 if __name__ == '__main__':
     app.run()

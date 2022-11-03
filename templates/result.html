@@ -14,6 +14,21 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+        <style>
+            body{
+                text-align: center;
+            }
+            .column {
+                float: center;
+                width: 50%;
+            }
+        
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        </style>
     </head>
     
     <body>
@@ -28,11 +43,22 @@
         </header>
         <div class="content container">
             <h2>Result</h2>
-            <p>Distance (Number of Errors)：{{ values.val1 }}</p>
-            <p>Word Error Rate：{{ values.val2 }}</p>
-            <p>Substitutions </p>
-            <p>Deletions </p>
-            <p>Insertions </p>
+            <div class="row">
+                <div class="column" style="background-color:#e1e1e1;">
+                    <h5>Reference transcript</h5>
+                    <p style="text-align: left !important; margin: 10px;">{{ values.ref }}</p>
+                </div>
+                <div class="column" style="background-color:#b2b2b2;">
+                    <h5>Hypothesis transcript</h5>
+                    <p style="text-align: left !important; margin: 10px;">{{ values.hyp }}</p>
+                </div>
+            </div>
+
+            <p>Substitutions: {{ values.sub }}</p>
+            <p>Deletions: {{ values.del }}</p>
+            <p>Insertions: {{ values.ins }}</p>
+            <p>Distance (Number of Errors)：{{ values.total }}</p>
+            <p>Word Error Rate：{{ values.wer }}%</p>
             <input type="button" value="Back" onclick="history.back()">
         </div>
     </body>
